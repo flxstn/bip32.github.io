@@ -1,6 +1,6 @@
 
-var BITCOIN_MAINNET_PUBLIC = 0x0488b21e;
-var BITCOIN_MAINNET_PRIVATE = 0x0488ade4;
+var BITCOIN_MAINNET_PUBLIC = 0x0488b21e0; // Renamed from 0x0488b21e because Auroracoin uses the same magic bytes
+var BITCOIN_MAINNET_PRIVATE = 0x0488ade40; // Renamed from 0x0488ade4 because Auroracoin uses the same magic bytes
 var BITCOIN_TESTNET_PUBLIC = 0x043587cf;
 var BITCOIN_TESTNET_PRIVATE = 0x04358394;
 var DOGECOIN_MAINNET_PUBLIC = 0x02facafd;
@@ -13,6 +13,8 @@ var LITECOIN_MAINNET_PUBLIC = 0x019da462;
 var LITECOIN_MAINNET_PRIVATE = 0x019d9cfe;
 var LITECOIN_TESTNET_PUBLIC = 0x0436f6e1;
 var LITECOIN_TESTNET_PRIVATE = 0x0436ef7d;
+var AURORACOIN_MAINNET_PUBLIC = 0x0488b21e;
+var AURORACOIN_MAINNET_PRIVATE = 0x0488ade4;
 
 var BIP32 = function(bytes) {
     // decode base58
@@ -52,7 +54,8 @@ BIP32.prototype.init_from_bytes = function(bytes) {
          this.version == DOGECOIN_TESTNET_PRIVATE ||
          this.version == JUMBUCKS_MAINNET_PRIVATE ||
          this.version == LITECOIN_MAINNET_PRIVATE ||
-         this.version == LITECOIN_TESTNET_PRIVATE );
+         this.version == LITECOIN_TESTNET_PRIVATE ||
+         this.version == AURORACOIN_MAINNET_PRIVATE );
 
     var is_public = 
         (this.version == BITCOIN_MAINNET_PUBLIC  ||
@@ -61,7 +64,8 @@ BIP32.prototype.init_from_bytes = function(bytes) {
          this.version == DOGECOIN_TESTNET_PUBLIC ||
          this.version == JUMBUCKS_MAINNET_PUBLIC ||
          this.version == LITECOIN_MAINNET_PUBLIC ||
-         this.version == LITECOIN_TESTNET_PUBLIC );
+         this.version == LITECOIN_TESTNET_PUBLIC ||
+         this.version == AURORACOIN_MAINNET_PUBLIC );
 
     if( is_private && key_bytes[0] == 0 ) {
         this.eckey = new Bitcoin.ECKey(key_bytes.slice(1, 33));
@@ -118,6 +122,10 @@ BIP32.prototype.build_extended_public_key = function() {
     case LITECOIN_TESTNET_PUBLIC:
     case LITECOIN_TESTNET_PRIVATE:
         v = LITECOIN_TESTNET_PUBLIC;
+        break;
+    case AURORACOIN_MAINNET_PUBLIC:
+    case AURORACOIN_MAINNET_PRIVATE:
+        v = AURORACOIN_MAINNET_PUBLIC;
         break;
      default:
         throw new Error("Unknown version");
@@ -255,7 +263,8 @@ BIP32.prototype.derive_child = function(i) {
          this.version == DOGECOIN_TESTNET_PRIVATE ||
          this.version == JUMBUCKS_MAINNET_PRIVATE ||
          this.version == LITECOIN_MAINNET_PRIVATE ||
-         this.version == LITECOIN_TESTNET_PRIVATE);
+         this.version == LITECOIN_TESTNET_PRIVATE||
+         this.version == AURORACOIN_MAINNET_PRIVATE);
 
     if( use_private && (!this.has_private_key || !is_private) ) throw new Error("Cannot do private key derivation without private key");
 

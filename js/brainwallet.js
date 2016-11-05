@@ -68,12 +68,20 @@
             private_prefix: 0x6f+0x80,
             bip32_public: LITECOIN_TESTNET_PUBLIC,
             bip32_private: LITECOIN_TESTNET_PRIVATE
+        },
+        aur_main: {
+            name: "Auroracoin",
+            network: "Mainnet",
+            prefix: 0x17,
+            private_prefix: 0xb0+0x80,
+            bip32_public: AURORACOIN_MAINNET_PUBLIC,
+            bip32_private: AURORACOIN_MAINNET_PRIVATE
         }
     };
 
     var PUBLIC_KEY_VERSION = 0;
     var PRIVATE_KEY_VERSION = 0x80;
-    var ADDRESS_URL_PREFIX = 'http://blockchain.info/address/'
+    var ADDRESS_URL_PREFIX = 'http://blockchain.info/address/';
     var BIP32_TYPE = BITCOIN_MAINNET_PRIVATE;
 
     function pad(str, len, ch) {
@@ -132,7 +140,7 @@
     }
 
     function updateGenFrom() {
-        if( gen_from == 'pass' ) {
+        if( gen_from == 'DONOTUSEpass' ) {
             $("#bip32_source_passphrase").attr('readonly', false);
             $("#bip32_source_key").attr('readonly', true);
             $("#gen_from_msg").html("Your passphrase is hashed using 50,000 rounds of HMAC-SHA256");
@@ -535,8 +543,8 @@
         $('#gen_from label input').on('change', onUpdateGenFrom );
         updateGenFrom();
 
-        $("#bip32_source_passphrase").val("crazy horse battery staple");
-        $("#bip32_source_key").val("xprv9s21ZrQH143K2JF8RafpqtKiTbsbaxEeUaMnNHsm5o6wCW3z8ySyH4UxFVSfZ8n7ESu7fgir8imbZKLYVBxFPND1pniTZ81vKfd45EHKX73");
+        $("#bip32_source_passphrase").val("");
+        $("#bip32_source_key").val("");
         onInput("#bip32_source_passphrase", onUpdateSourcePassphrase);
 
         $("#checkbox_show_passphrase").on('change', onShowPassphraseChanged );

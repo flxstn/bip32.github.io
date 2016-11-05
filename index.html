@@ -38,9 +38,10 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown" id="crCurrency">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="crSelect"><span id="crName">Bitcoin Mainnet</span>&nbsp;<b class="caret">&nbsp;</b></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="crSelect"><span id="crName">Auroracoin Mainnet</span>&nbsp;<b class="caret">&nbsp;</b></a>
               <ul class="dropdown-menu">
-                <li><a href="http://blockchain.info/address/" id="btc_main">Bitcoin Mainnet</a></li>
+                <li><a href="#" id="aur_main">Auroracoin Mainnet</a></li>
+                <!-- <li><a href="http://blockchain.info/address/" id="btc_main">Bitcoin Mainnet</a></li>-->
                 <li><a href="http://blockexplorer.com/testnet/address/" id="btc_test">Bitcoin Testnet</a></li>
                 <li><a href="http://block-explorer.com/address/" id="ltc_main">Litecoin Mainnet</a></li>
                 <li><a href="#" id="ltc_test">Litecoin Testnet</a></li>
@@ -68,16 +69,19 @@
           <form action="/" class="form-horizontal" method="get">
             <fieldset>
               <legend>BIP32 Deterministic Key Generator</legend>
+
               <div class="form-group">
-                <label class="col-lg-2 control-label" for="from_pass">Derive From</label>
+                <label class="col-lg-2 control-label" for="from_key">Derive From</label>
                 <div class="col-lg-10">
                   <div class="btn-group" data-toggle="buttons" id="gen_from">
-                    <label class="btn btn-default active" title="Single SHA256"><input id="from_pass" name="gen_from" type="radio" />Passphrase</label>
-                    <label class="btn btn-default" title="Base58-encoded"><input id="from_key" name="gen_from" type="radio" />BIP32 Key</label>
+                    <!-- <label class="btn btn-default active" title="Single SHA256"><input id="from_pass" name="gen_from" type="radio" />Passphrase</label>-->
+                    <label class="btn btn-default active" title="Base58-encoded"><input id="from_key" name="gen_from" type="radio" />BIP32 Key</label>
                   </div>
-                  &nbsp;&nbsp;<span class="help-inline" id="gen_from_msg"></span>
+                  &nbsp;&nbsp;<span class="help-inline" id="gen_from_msg"></span>
+
                 </div>
               </div>
+              <!--
               <div class="form-group">
                 <label class="col-lg-2 control-label" for="bip32_source_passphrase">Passphrase</label>
                 <div class="col-lg-10">
@@ -91,7 +95,6 @@
                       </div>
                     </div>
                   </div>
-                  <p />
                   <div class="row" >
                     <div class="col-lg-12">
                       <div class="progress progress-striped" id="bip32_hashing_style" style="margin-bottom: 10px;">
@@ -106,7 +109,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div>-->
               <div class="form-group">
                 <label class="col-lg-2 control-label" for="bip32_source_key">BIP32 Extended Key</label>
                 <div class="col-lg-10">
@@ -192,7 +195,7 @@
               </div>
               <div class="form-group" id="custom_group">
                 <label class="col-lg-2 control-label" for="bip32_custom_path">Custom Path</label>
-                <div class="col-lg-10">
+                <div class="col-lg-4">
                   <div class="input-group">
                     <input class="form-control" id="bip32_custom_path" type="text" placeholder="m/i" />
                   </div>
@@ -200,14 +203,18 @@
               </div>
               <div class="form-group" id="account_group">
                 <label class="col-lg-2 control-label" for="account_index">Account (k)</label>
-                <div class="col-lg-10">
-                  <input class="form-control" id="account_index" maxlength="10" type="text" value="0" />
+                <div class="col-lg-2">
+                  <input class="form-control" id="account_index" maxlength="10" type="number" min="0"  value="0" />
+                </div>
+                <label class="col-lg-2 control-label" for="keypair_index">Keypair Index (i)</label>
+                <div class="col-lg-2">
+                  <input class="form-control" id="keypair_index" maxlength="10" type="number" min="0" value="0" />
                 </div>
               </div>
-              <div class="form-group" id="child_group">
-                <label class="col-lg-2 control-label" for="keypair_index">Keypair Index (i)</label>
-                <div class="col-lg-10">
-                  <input class="form-control" id="keypair_index" maxlength="10" type="text" value="0" />
+              <div class="form-group">
+                <label class="col-lg-2 control-label" for="addr">Address</label>
+                <div class="col-lg-4">
+                  <input class="form-control" id="addr" readonly="readonly" type="text" />
                 </div>
               </div>
               <div class="form-group">
@@ -232,12 +239,6 @@
                 <label class="col-lg-2 control-label" for="derived_public_key_hex">Public Key (Hex)</label>
                 <div class="col-lg-10">
                   <input class="form-control" id="derived_public_key_hex" readonly="readonly" type="text" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-lg-2 control-label" for="addr">Address</label>
-                <div class="col-lg-10">
-                  <input class="form-control" id="addr" readonly="readonly" type="text" />
                 </div>
               </div>
               <div class="form-group">
