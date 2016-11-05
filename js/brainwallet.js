@@ -349,7 +349,7 @@
             $("#custom_group").hide();
         }
 
-        if( bip32_derivation_path.indexOf('/k/') >= 0 || bip32_derivation_path.indexOf('/k\'/') >= 0 ) {
+        if( bip32_derivation_path.indexOf('/k/') >= 0 || bip32_derivation_path.indexOf('/k\'/') >= 0 || bip32_derivation_path.indexOf('/k/') >= 0 ) {
             $("#account_group").show();
         } else {
             $("#account_group").hide();
